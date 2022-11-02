@@ -11,4 +11,6 @@ use Illuminate\Database\Eloquent\Model;
 class ApplicationStatistic extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
 }

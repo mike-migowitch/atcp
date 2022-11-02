@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessStatisticsSave;
+use App\Models\ApplicationStatistic;
 use App\Services\AppticaTopAppsService;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Request;
 
 class ApplicationStatisticController extends Controller
@@ -17,8 +20,19 @@ class ApplicationStatisticController extends Controller
         $this->topAppsService = $topAppsService;
     }
 
-    public function getAppTopCategoryByDate(\Date $date)
+
+    /**
+     * @throws RequestException
+     */
+    public function getAppTopByDate(string $date)
     {
-        return $this->topAppsService->getData(new \DateTime('now'));
+        $date = new \DateTime($date);
+
+        $applicationStatistics = ApplicationStatistic::whereActualDate($date)->get();
+
+        if ($applicationStatistics->isEmpty()) {
+            $applicationStatistics = $this->topAppsService->getStatistic($date);
+            ProcessStatisticsSave::dispatch($applicationStatistics);
+        }
     }
 }

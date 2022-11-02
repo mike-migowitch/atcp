@@ -14,10 +14,17 @@ namespace App\Models{
 /**
  * App\Models\ApplicationStatistic
  *
+ * @property int $id
+ * @property int $category
+ * @property int $position
+ * @property \DateTime $actual_date
  * @method static \Illuminate\Database\Eloquent\Builder|ApplicationStatistic newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ApplicationStatistic newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ApplicationStatistic query()
- * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|ApplicationStatistic whereActualDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ApplicationStatistic whereCategory($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ApplicationStatistic whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ApplicationStatistic wherePosition($value)
  */
 	class IdeHelperApplicationStatistic {}
 }
