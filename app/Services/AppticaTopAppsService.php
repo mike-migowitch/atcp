@@ -2,14 +2,14 @@
 
 namespace App\Services;
 
+use App\Interfaces\ExternalStatisticInterface;
 use App\Models\ApplicationStatistic;
-use App\Models\ExternalStatistic;
 use Http;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
 
-class AppticaTopAppsService
+class AppticaTopAppsService implements ExternalStatisticInterface
 {
     /**
      * Уникальный идентификатор приложения, в тестовом задании его значение 1421444 (это приложение Among Us)
