@@ -15,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('appTopCategory/{date}', [ApplicationStatisticController::class, 'getAppTopByDate']);
+Route::middleware('endpoint.logging')
+    ->get('appTopCategory/{date}', [ApplicationStatisticController::class, 'getAppTopByDate']);
