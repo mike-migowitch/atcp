@@ -15,3 +15,4 @@ docker run --rm \
 ```
 * Поднять проект при помощи Sail: ```./vendor/bin/sail up```
 * Выполнить миграции: ```sail artisan migrate```
+* Запустить очереди: ```sail artisan queue:work```
