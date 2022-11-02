@@ -1,6 +1,6 @@
 # Application Top Category Positions
 
-Разработано на Laravel 9
+Разработано на Laravel 9. Если разворачивать по инструкции, то необходимо наличие Docker.
 
 ### Развертывание
 * При помощи Composer в папке с проектом выполнить: ```composer install --ignore-platform-reqs```
