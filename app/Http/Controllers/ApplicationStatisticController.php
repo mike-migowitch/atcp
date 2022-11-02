@@ -17,8 +17,8 @@ class ApplicationStatisticController extends Controller
         $this->topAppsService = $topAppsService;
     }
 
-    public function getAppTopCategoryByDate(\DateTimeInterface $date)
+    public function getAppTopCategoryByDate(\Date $date)
     {
-        $this->topAppsService->sendRequest(new \DateTime('now'));
+        return $this->topAppsService->getData(new \DateTime('now'));
     }
 }

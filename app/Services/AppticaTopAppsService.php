@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use Http;
+use Illuminate\Http\Client\RequestException;
+use Illuminate\Http\Client\Response;
 
 class AppticaTopAppsService
 {
@@ -30,16 +32,24 @@ class AppticaTopAppsService
     {
         $dateString = $date->format("Y-m-d");
 
-        return sprintf("https://api.apptica.com/package/top_history/%d/%d?
-            date_from=%s&
-            date_to=%s&
-            B4NKGg=%s", self::APPLICATION_ID, self::COUNTRY_ID, $dateString, $dateString, self::B4NKGg);
+        return sprintf("https://api.apptica.com/package/top_history/%d/%d?date_from=%s&date_to=%s&B4NKGg=%s",
+            self::APPLICATION_ID,
+            self::COUNTRY_ID,
+            $dateString,
+            $dateString,
+            self::B4NKGg
+        );
     }
 
-    public function sendRequest(\DateTimeInterface $date)
+    public function getData(\DateTimeInterface $date)
     {
         $url = $this->getRequestUrl($date);
-
         $response = Http::get($url);
+
+        $response->onError(function (Response $response) {
+            throw $response->toException();
+        });
+
+
     }
 }
